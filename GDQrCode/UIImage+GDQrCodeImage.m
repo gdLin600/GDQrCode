@@ -7,9 +7,10 @@
 //
 
 #import "UIImage+GDQrCodeImage.h"
-#import <AVFoundation/AVFoundation.h>
+
 #import "GDQrCodeConst.h"
 #import "UIColor+GDQrCode.h"
+
 @implementation UIImage (GDQrCodeImage)
 #pragma mark - 创建一个有大小颜色的二维码图片
 + (instancetype)gd_codeImageWithMessage:(NSString *)inputMessage{

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface UIImage (GDQrCodeImage)
+
 /**
  *  创建一个有大小颜色的二维码图片(没有背景色)
  *
