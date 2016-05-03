@@ -34,6 +34,6 @@
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.imageV setImage:[UIImage gd_codeImageWithMessage:@"https://github.com/gdLin600/GDQrCode.git"]];
+    [self.imageV setImage:[UIImage gd_QrCodeImageWithColor:[UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:0.8] message:@"https://github.com/gdLin600/GDQrCode"]];
 }
 @end

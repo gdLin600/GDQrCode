@@ -7,7 +7,7 @@
 //
 
 #import "UIColor+GDQrCode.h"
-#import <objc/runtime.h>
+//#import <objc/runtime.h>
 @implementation UIColor (GDQrCode)
 - (GDColorRGBA)getRGBA {
     CGFloat r=0,g=0,b=0,a=0;
@@ -21,9 +21,9 @@
         b = components[2];
         a = components[3];
     }
-    GDColorRGBA rgba = {r,g,b,a};
+    GDColorRGBA rgba = {r * 255.0,g * 255.0,b * 255.0,a * 255.0};
     return rgba;
-    /*CGFloat components[4];
+    /*CGFloat components[3];
      CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
      unsigned char resultingPixel[4];
      CGContextRef context = CGBitmapContextCreate(&resultingPixel,
@@ -45,8 +45,8 @@
      components[0],
      components[1],
      components[2],
-     components[3]
-     //        [[self valueForKey:@"alphaComponent"] floatValue] * 255.0
+     //        components[3],
+     [[self valueForKey:@"alphaComponent"] floatValue] * 255.0
      };
      return rgba;*/
 }

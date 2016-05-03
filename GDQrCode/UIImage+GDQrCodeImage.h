@@ -19,7 +19,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage;
 
 
 /**
@@ -30,7 +30,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithMessage:(NSString *)inputMessage;
-+ (instancetype)gd_codeImageWithMessage:(NSString *)inputMessage;
++ (instancetype)gd_QrCodeImageWithMessage:(NSString *)inputMessage;
 
 /**
  *  创建一个自定义大小的二维码(没有背景色)
@@ -41,7 +41,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithSize:(CGFloat)size message:(NSString *)inputMessage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size message:(NSString *)inputMessage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)inputMessage;
 
 /**
  *  创建一个自定义颜色的二维码(没有背景色)
@@ -52,7 +52,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)inputMessage;
-+ (instancetype)gd_codeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage;
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage;
 
 /**
  *  创建一个有大小颜色的二维码图片(含有logo)(没有背景色)
@@ -65,7 +65,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个二维码图片(含有logo)(没有背景色)
@@ -76,7 +76,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithMessage:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithMessage:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithMessage:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个自定义大小的二维码(含有logo)(没有背景色)
@@ -88,7 +88,7 @@
  *  @return 返回一个二维码
  */
 - (instancetype)initWithSize:(CGFloat)size message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个自定义颜色的二维码(含有logo)(没有背景色)
@@ -100,7 +100,7 @@
  *  @return 返回一个二维码(没有背景色)
  */
 - (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 
 
@@ -116,7 +116,7 @@
  *  @return 创建的二维码
  */
 - (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个有颜色 背景色 (含有logo)默认大小
@@ -129,7 +129,7 @@
  *  @return 创建的二维码
  */
 - (instancetype)initWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个有大小  背景色 (含有logo)默认颜色
@@ -142,7 +142,7 @@
  *  @return 创建的二维码
  */
 - (instancetype)initWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage;
 
 /**
  *  创建一个有大小 颜色 背景色 (不含有logo)
@@ -155,7 +155,7 @@
  *  @return 创建的二维码
  */
 - (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage;
-+ (instancetype)gd_codeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage;
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage;
 
 
 

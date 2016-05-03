@@ -9,5 +9,6 @@
 #ifndef GDQrCode_h
 #define GDQrCode_h
 #import "UIImage+GDQrCodeImage.h"
-#import "GDQrCodeConst.h"
+
+
 #endif /* GDQrCode_h */
