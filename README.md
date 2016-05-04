@@ -1,4 +1,4 @@
-# GDQrCode是一个基于 AVFoundation 使用UIImage的一个分类来自定义属于自己的二维码
+# GDQrCode是一个基于 CoreImage 使用UIImage的一个分类来自定义属于自己的二维码
 
 ###1.可实现二维码颜色 背景色 自定义
 ###2.可实现二维码 背景色的透明度的设置
