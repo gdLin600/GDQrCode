@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name         = 'GDQrCode'
-s.version      = '0.0.3'
-s.summary      = '基于 AVFoundation 生成一个自定义二维码(颜色 背景色 alpha logo)'
+s.version      = '0.0.4'
+s.summary      = '基于 CoreImage 生成一个自定义二维码(颜色 背景色 alpha logo)'
 s.homepage     = 'https://github.com/gdLin600/GDQrCode'
 s.license      = 'MIT'
 s.authors      = { 'gdLin600' => 'lingd600@163.com' }
