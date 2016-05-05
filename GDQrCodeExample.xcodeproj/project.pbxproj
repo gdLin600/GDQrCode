@@ -18,6 +18,7 @@
 		668D029D1CCDF26A002B151F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 668D029B1CCDF26A002B151F /* LaunchScreen.storyboard */; };
 		668D02A81CCDF26A002B151F /* GDQrCodeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02A71CCDF26A002B151F /* GDQrCodeExampleTests.m */; };
 		668D02B31CCDF26A002B151F /* GDQrCodeExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02B21CCDF26A002B151F /* GDQrCodeExampleUITests.m */; };
+		669BC5881CD9BD830091C5A3 /* GDQrCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		668D02AE1CCDF26A002B151F /* GDQrCodeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GDQrCodeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		668D02B21CCDF26A002B151F /* GDQrCodeExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDQrCodeExampleUITests.m; sourceTree = "<group>"; };
 		668D02B41CCDF26A002B151F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		669BC5861CD9BD830091C5A3 /* GDQrCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQrCodeScanner.h; sourceTree = "<group>"; };
+		669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQrCodeScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				663559E41CCDF36000564EBD /* UIColor+GDQrCode.m */,
 				663559E51CCDF36000564EBD /* UIImage+GDQrCodeImage.h */,
 				663559E61CCDF36000564EBD /* UIImage+GDQrCodeImage.m */,
+				669BC5861CD9BD830091C5A3 /* GDQrCodeScanner.h */,
+				669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */,
 			);
 			path = GDQrCode;
 			sourceTree = SOURCE_ROOT;
@@ -301,6 +306,7 @@
 				663559E71CCDF36000564EBD /* GDQrCodeConst.m in Sources */,
 				663559E91CCDF36000564EBD /* UIImage+GDQrCodeImage.m in Sources */,
 				668D028F1CCDF26A002B151F /* main.m in Sources */,
+				669BC5881CD9BD830091C5A3 /* GDQrCodeScanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
