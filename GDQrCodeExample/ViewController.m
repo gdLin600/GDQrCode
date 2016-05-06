@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "GDQrCode.h"
-@interface ViewController ()
+@interface ViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, weak) UIImageView *imageV;
 @end
 
@@ -34,6 +34,23 @@
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.imageV setImage:[UIImage gd_QrCodeImageWithColor:[UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:0.8] message:@"https://github.com/gdLin600/GDQrCode"]];
+    UIImage *qr = [UIImage gd_QrCodeImageWithColor:[UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:0.8] message:@"https://github.com/gdLin600/GDQrCode"];
+    [self.imageV setImage:qr];
+    //    UIImageWriteToSavedPhotosAlbum(qr, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    UIImagePickerController *imageV = [[UIImagePickerController alloc] init];
+    imageV.delegate = self;
+    imageV.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imageV animated:YES completion:nil];
+    
 }
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
+    [[GDQrCodeScanner shareScanner] gd_giveMeQrCodeImage:image completion:^(NSString *qrCodeMessage, NSError *error) {
+        NSLog(@"%@------%@",qrCodeMessage,error);
+    }];
+}
+
 @end

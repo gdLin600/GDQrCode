@@ -8,7 +8,9 @@
 
 #import "GDQrCodeScanner.h"
 #import <AVFoundation/AVFoundation.h>
-@interface GDQrCodeScanner ()<AVCaptureMetadataOutputObjectsDelegate>
+@interface GDQrCodeScanner ()<AVCaptureMetadataOutputObjectsDelegate>{
+    completionBlock _completionBlock;
+}
 @property ( strong , nonatomic ) AVCaptureDevice * device;
 @property ( strong , nonatomic ) AVCaptureDeviceInput * input;
 @property ( strong , nonatomic ) AVCaptureMetadataOutput * output;
@@ -24,6 +26,7 @@
 @end
 
 @implementation GDQrCodeScanner
+//singleton_implementationstatic;
 
 #pragma mark -------- 懒加载---------
 - (AVCaptureDevice *)device
@@ -93,43 +96,68 @@
 }
 
 
-+ (instancetype)gd_QrCodeScannerWithScannerView:(UIView *)scannerView scannerContainerView:(UIView *)scannerContainerView completion:(void (^)(NSString *qrCodeMessage,NSError *error))completion{
++ (instancetype)gd_QrCodeScannerWithScannerView:(UIView *)scannerView scannerContainerView:(UIView *)scannerContainerView completion:(completionBlock)completion{
     return [[super alloc] initWithScannerView:scannerView scannerContainerView:scannerContainerView completion:completion];
 }
-- (instancetype)initWithScannerView:(UIView *)scannerView scannerContainerView:(UIView *)scannerContainerView completion:(void (^)(NSString *qrCodeMessage,NSError *error))completion{
+- (instancetype)initWithScannerView:(UIView *)scannerView scannerContainerView:(UIView *)scannerContainerView completion:(completionBlock)completion{
     if (self = [super init]) {
+        _completionBlock = completion;
         self.scannerView = scannerView;
         self.scannerContainerView = scannerContainerView;
-        // 1.判断输入能否添加到会话中
-        if (![self.session canAddInput:self.input]) return nil;
-        [self.session addInput:self.input];
-        
-        
-        // 2.判断输出能够添加到会话中
-        if (![self.session canAddOutput:self.output]) return nil;
-        [self.session addOutput:self.output];
-        
-        // 4.设置输出能够解析的数据类型
-        // 注意点: 设置数据类型一定要在输出对象添加到会话之后才能设置
-        self.output.metadataObjectTypes = self.output.availableMetadataObjectTypes;
-        
-        // 5.设置监听监听输出解析到的数据
-        [self.output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-        
-        // 6.添加预览图层
-        [self.scannerView.layer insertSublayer:self.previewLayer atIndex:0];
-        self.previewLayer.frame = self.scannerView.bounds;
-        
-        // 7.添加容器图层
-        [self.scannerView.layer addSublayer:self.containerLayer];
-        self.containerLayer.frame = self.scannerView.bounds;
-        
-        // 8.开始扫描
-        [self.session startRunning];
+        [self createSession];
+        //开始扫描
+        [self gd_startScanner];
     }
     return self;
 }
 
+- (void)gd_giveMeScannerView:(UIView *)scannerView scannerContainerView:(UIView *)scannerContainerView completion:(void (^)(NSString *qrCodeMessage,NSError *error))completion{
+    _completionBlock = completion;
+    self.scannerView = scannerView;
+    self.scannerContainerView = scannerContainerView;
+    [self createSession];
+    // 开始扫描
+    [self gd_startScanner];
+}
+
+
+- (void)gd_startScanner{
+    [self.session startRunning];
+    
+}
+
+- (void)gd_stopScanner{
+    [self.session stopRunning];
+}
+
+/**
+ *  初始化session
+ */
+- (void)createSession{
+    // 1.判断输入能否添加到会话中
+    if (![self.session canAddInput:self.input]) return;
+    [self.session addInput:self.input];
+    
+    
+    // 2.判断输出能够添加到会话中
+    if (![self.session canAddOutput:self.output]) return;
+    [self.session addOutput:self.output];
+    
+    // 4.设置输出能够解析的数据类型
+    // 注意点: 设置数据类型一定要在输出对象添加到会话之后才能设置
+    self.output.metadataObjectTypes = self.output.availableMetadataObjectTypes;
+    
+    // 5.设置监听监听输出解析到的数据
+    [self.output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+    
+    // 6.添加预览图层
+    [self.scannerView.layer insertSublayer:self.previewLayer atIndex:0];
+    self.previewLayer.frame = self.scannerView.bounds;
+    
+    // 7.添加容器图层
+    [self.scannerView.layer addSublayer:self.containerLayer];
+    self.containerLayer.frame = self.scannerView.bounds;
+}
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
@@ -138,7 +166,9 @@
     AVMetadataMachineReadableCodeObject *object = [metadataObjects lastObject];
     if (object == nil) return;
     // 只要扫描到结果就会调用
-    //    self.customLabel.text = object.stringValue;
+    if(_completionBlock){
+        _completionBlock(object.stringValue,nil);
+    }
     // 清除之前的描边
     [self clearLayers];
     
@@ -196,6 +226,41 @@
     // 3.将用于保存矩形的图层添加到界面上
     [self.containerLayer addSublayer:layer];
 }
+
+- (void)gd_giveMeQrCodeImage:(UIImage *)qrCodeImage completion:(completionBlock)completion{
+    
+    NSString *content = @"" ;
+    NSError *err = nil;
+    if (!qrCodeImage) {
+        err = [NSError errorWithDomain:@"你还没有给我一个图片" code:404 userInfo:nil];
+        completion(content,err);
+    }
+    CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode
+                            
+                                              context:[CIContext contextWithOptions:nil]
+                            
+                                              options:@{CIDetectorAccuracy:CIDetectorAccuracyHigh}];
+    
+    NSArray *features = [detector featuresInImage:[[CIImage alloc] initWithImage:qrCodeImage]];
+    if (features.count) {
+        for (CIFeature *feature in features) {
+            
+            if ([feature isKindOfClass:[CIQRCodeFeature class]]) {
+                
+                content = ((CIQRCodeFeature *)feature).messageString;
+                break;
+            }
+        }
+    } else {
+        err = [NSError errorWithDomain:@"未正常解析二维码图片, 请确保iphone5/5c以上的设备" code:404 userInfo:nil];
+    }
+    if (completion) {
+        completion(content,err);
+    }
+}
+
+
+
 
 
 @end
