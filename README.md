@@ -14,26 +14,26 @@
 /**
 *创建一个有大小颜色的二维码图片
 */
-- (instancetype)initWithSize:color:message:;
-+ (instancetype)gd_codeImageWithSize:color:message:;
+- (instancetype)initWithSize:color:message:
++ (instancetype)gd_codeImageWithSize:color:message:
 
 /**
 *创建一个二维码图片
 */
-- (instancetype)initWithMessage:;
-+ (instancetype)gd_codeImageWithMessage:;
+- (instancetype)initWithMessage:
++ (instancetype)gd_codeImageWithMessage:
 
 /**
 *创建一个自定义大小的二维码
 */
-- (instancetype)initWithSize:message:;
-+ (instancetype)gd_codeImageWithSize:message:;
+- (instancetype)initWithSize:message:
++ (instancetype)gd_codeImageWithSize:message:
 
 /**
 *创建一个自定义颜色的二维码
 */
-- (instancetype)initWithColor:message:;
-+ (instancetype)gd_codeImageWithColor:message:;
+- (instancetype)initWithColor:message:
++ (instancetype)gd_codeImageWithColor:message:
 
 
 ```
@@ -45,26 +45,26 @@
 /**
 *创建一个有大小颜色的二维码图片(含有logo)
 */
-- (instancetype)initWithSize:color:message:centerImage;
-+ (instancetype)gd_codeImageWithSize:color:message:centerImage:;
+- (instancetype)initWithSize:color:message:centerImage
++ (instancetype)gd_codeImageWithSize:color:message:centerImage:
 
 /**
 *创建一个二维码图片(含有logo)
 */
-- (instancetype)initWithMessage:centerImage:;
-+ (instancetype)gd_codeImageWithMessage:centerImage:;
+- (instancetype)initWithMessage:centerImage:
++ (instancetype)gd_codeImageWithMessage:centerImage:
 
 /**
 *创建一个自定义大小的二维码(含有logo)
 */
-- (instancetype)initWithSize:message:centerImage:;
-+ (instancetype)gd_codeImageWithSize:message:centerImage:;
+- (instancetype)initWithSize:message:centerImage:
++ (instancetype)gd_codeImageWithSize:message:centerImage:
 
 /**
 *创建一个自定义颜色的二维码(含有logo)
 */
-- (instancetype)initWithColor:message:centerImage:;
-+ (instancetype)gd_codeImageWithColor:message:centerImage:;
+- (instancetype)initWithColor:message:centerImage:
++ (instancetype)gd_codeImageWithColor:message:centerImage:
 
 ```
 
@@ -76,26 +76,26 @@
 /**
 *创建一个有大小 颜色 背景色 (含有logo)
 */
-- (instancetype)initWithSize:color:bgColor:message:centerImage:;
-+ (instancetype)gd_codeImageWithSize:color:bgColor:message:centerImage:;
+- (instancetype)initWithSize:color:bgColor:message:centerImage:
++ (instancetype)gd_codeImageWithSize:color:bgColor:message:centerImage:
 
 /**
 *创建一个有颜色 背景色 (含有logo)默认大小
 */
-- (instancetype)initWithColor:bgColor:message:centerImage:;
-+ (instancetype)gd_codeImageWithColor:bgColor:message:centerImage:;
+- (instancetype)initWithColor:bgColor:message:centerImage:
++ (instancetype)gd_codeImageWithColor:bgColor:message:centerImage:
 
 /**
 *创建一个有大小背景色 (含有logo)默认颜色
 */
-- (instancetype)initWithSize:bgColor:message:centerImage:;
-+ (instancetype)gd_codeImageWithSize:bgColor:message:centerImage:;
+- (instancetype)initWithSize:bgColor:message:centerImage:
++ (instancetype)gd_codeImageWithSize:bgColor:message:centerImage:
 
 /**
 *创建一个有大小 颜色 背景色 (不含有logo)
 */
-- (instancetype)initWithSize:color:bgColor:message:;
-+ (instancetype)gd_codeImageWithSize:color:bgColor:message:;
+- (instancetype)initWithSize:color:bgColor:message:
++ (instancetype)gd_codeImageWithSize:color:bgColor:message:
 
 ```
 
@@ -106,47 +106,37 @@
 /**
 *  imageview 设置二维码图片
 */
-- (void)gd_setCodeImageWithCodeMessage:;
+- (void)gd_setCodeImageWithCodeMessage:
 
-- (void)gd_setCodeImageWithCodeImageColor: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageColor: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageBdColor: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageBdColor: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageSize: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageSize: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: codeMessage:;
+- (void)gd_setCodeImageWithCenterImage: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageColor: centerImage: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageBdColor: centerImage: codeMessage:
 
-- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: centerImage: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageSize: centerImage: codeMessage:
 
+- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: centerImage: codeMessage:
 
-- (void)gd_setCodeImageWithCenterImage: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: centerImage: codeMessage:
 
-
-- (void)gd_setCodeImageWithCodeImageColor: centerImage: codeMessage:;
-
-- (void)gd_setCodeImageWithCodeImageBdColor: centerImage: codeMessage:;
-
-
-- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: centerImage: codeMessage:;
-
-
-- (void)gd_setCodeImageWithCodeImageSize: centerImage: codeMessage:;
-
-
-- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: centerImage: codeMessage:;
-
-- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: centerImage: codeMessage:;
-
-- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: centerImage: codeMessage:;
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: centerImage: codeMessage:
 
 ```
 

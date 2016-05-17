@@ -7,12 +7,10 @@
 //
 
 #import "UIImage+GDQrCodeImage.h"
-
 #import "GDQrCodeConst.h"
 #import "UIColor+GDQrCode.h"
 
 @implementation UIImage (GDQrCodeImage)
-
 - (UIImage *)roundedCornerImageWithCornerRadius:(CGFloat)cornerRadius {
     CGFloat w = self.size.width;
     CGFloat h = self.size.height;
@@ -138,6 +136,7 @@
 
 - (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
     if (self = [super init]) {
+        
         // 1.创建滤镜
         CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
         // 2.还原滤镜默认属性
@@ -150,6 +149,7 @@
         
         // 4.从滤镜从取出生成好的二维码图片
         CIImage *ciImage = [filter outputImage];
+        
         self = [self createNonInterpolatedUIImageFormCIImage:ciImage size:size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor centerImage:centerImage];
     }
     return self;
@@ -166,7 +166,9 @@
  *  @return UIImage
  */
 - (UIImage *)createNonInterpolatedUIImageFormCIImage:(CIImage *)ciImage size:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor centerImage:(UIImage *)centerImage{
-    size = size>GDCodeSize?size:GDCodeSize;
+    
+    size = size <= GDCodeMINSize ? GDCodeMINSize : size >= GDCodeMAXSize ? GDCodeMAXSize : size;
+    
     CGRect extentRect = CGRectIntegral(ciImage.extent);
     CGFloat scale = MIN(size / CGRectGetWidth(extentRect), size / CGRectGetHeight(extentRect));
     
@@ -278,11 +280,10 @@
     CGImageRelease(imageRef);
     CGContextRelease(context);
     CGColorSpaceRelease(colorSpace);
-    if(centerImage)
-        return [self addSubImage:resultUIImage sub:centerImage];
-    else{
-        return resultUIImage;
-    }
+    if(centerImage) resultUIImage = [self addSubImage:resultUIImage sub:centerImage];
+    
+    
+    return resultUIImage;
 }
 
 void ProviderReleaseData (void *info, const void *data, size_t size){
@@ -291,7 +292,74 @@ void ProviderReleaseData (void *info, const void *data, size_t size){
 
 
 
++ (void)gd_asyncGetQrCodeImageWithMessage:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:0 message:codeMessage completion:completion];
+}
 
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size color:nil message:codeMessage completion:completion];
+}
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size color:codeColor message:codeMessage centerImage:nil completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:0 color:codeColor message:codeMessage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size color:codeColor bgColor:nil message:codeMessage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithMessage:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:0 message:codeMessage centerImage:centerImage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size bgColor:nil message:codeMessage centerImage:centerImage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithColor:codeColor bgColor:nil message:codeMessage centerImage:centerImage completion:completion];
+}
+
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:0 color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size color:nil bgColor:bgColor message:codeMessage centerImage:centerImage completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion {
+    [self gd_asyncGetQrCodeImageWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:nil completion:completion];
+}
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion {
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIImage *image = [UIImage gd_QrCodeImageWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(image);
+            }
+        });
+    });
+    
+    //    __block UIImage *image ;
+    //    dispatch_group_t group = dispatch_group_create();
+    //    dispatch_group_async(group, dispatch_get_global_queue(0,0), ^{
+    //        image = [UIImage gd_QrCodeImageWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
+    //    });
+    //    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    //        if (completion) {
+    //            completion(image);
+    //        }
+    //    });
+}
 
 
 @end

@@ -66,7 +66,7 @@
 }
 
 - (void)gd_setCodeImageWithCodeImageColor:(UIColor *)codeColor codeImageSize:(CGFloat)size centerImage:(UIImage *)centerImage codeMessage:(NSString *)codeMessage {
-    [self gd_setCodeImageWithCodeImageColor:codeColor codeImagebgColor:nil centerImage:centerImage codeMessage:codeMessage];
+    [self gd_setCodeImageWithCodeImageColor:codeColor codeImagebgColor:nil codeImageSize:size centerImage:centerImage codeMessage:codeMessage];
 }
 
 - (void)gd_setCodeImageWithCodeImageColor:(UIColor *)codeColor codeImagebgColor:(UIColor *)bgColor centerImage:(UIImage *)centerImage codeMessage:(NSString *)codeMessage {
@@ -74,7 +74,15 @@
 }
 
 - (void)gd_setCodeImageWithCodeImageColor:(UIColor *)codeColor codeImagebgColor:(UIColor *)bgColor codeImageSize:(CGFloat)size centerImage:(UIImage *)centerImage codeMessage:(NSString *)codeMessage {
-    [self setImage:[UIImage gd_QrCodeImageWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage]];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIImage *image = [UIImage gd_QrCodeImageWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.image = nil;
+            [self setImage:image];
+        });
+    });
+    
 }
 
 

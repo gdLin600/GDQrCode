@@ -4,9 +4,9 @@
  */
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN CGFloat const GDCodeSize;
+UIKIT_EXTERN CGFloat const GDCodeMINSize;
 
-
+UIKIT_EXTERN CGFloat const GDCodeMAXSize;
 
 
 

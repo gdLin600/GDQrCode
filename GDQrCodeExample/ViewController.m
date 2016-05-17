@@ -8,8 +8,10 @@
 
 #import "ViewController.h"
 #import "GDQrCode.h"
-@interface ViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, weak) UIImageView *imageV;
+@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, weak) UITableView *t;
 @end
 
 @implementation ViewController
@@ -30,30 +32,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    //    UIImage *qr = [UIImage gd_QrCodeImageWithColor:[UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:0.8] message:@"https://github.com/gdLin600/GDQrCode"];
-    //    [self.imageV setImage:qr];
-    UIImage *image = [[UIImage imageNamed:@"icon"] roundedCornerImageWithCornerRadius:10];
-    [self.imageV gd_setCodeImageWithCodeImageColor:[[UIColor redColor] colorWithAlphaComponent:0.6] codeImagebgColor:[[UIColor yellowColor] colorWithAlphaComponent:0.2] codeImageSize:0 centerImage:image codeMessage:@"https://github.com/gdLin600/GDQrCode"];
-    //    UIImageWriteToSavedPhotosAlbum(qr, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    //    UIImagePickerController *imageV = [[UIImagePickerController alloc] init];
-    //    imageV.delegate = self;
-    //    imageV.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    //    [self presentViewController:imageV animated:YES completion:nil];
-    
-}
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    UITableView *t = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    [t setBackgroundColor:[UIColor redColor]];
+    t.dataSource = self;
+    t.delegate = self;
+    _t = t;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(load)];
+    [t addGestureRecognizer:tap];
+    [self.view addSubview:t];
     
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
-    [[GDQrCodeScanner shareScanner] gd_giveMeQrCodeImage:image completion:^(NSString *qrCodeMessage, NSError *error) {
-        NSLog(@"%@------%@",qrCodeMessage,error);
-    }];
+- (void)load{
+    
 }
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.imageV gd_setCodeImageWithCodeImageSize:1024*10  centerImage:nil codeMessage:@"1222212sadahkhdkjahsdkjhakjdhkajshdkjahkjkbcmbzmcbnjhjgjgajhgajgahgfjhgajhgbbzxnbmbzmbcjbjkhjkahdkjahdkjahskjdhakbcmzbmzbcmbajkshdkjahkdjhaskhdkahsdkhuiqhyuiyqiueyxhklh fjkzhx cjhckhzkjhc kxjhzc jhsjk ha hjka hfjka hf askjdhjkahkjxcncznczkhcjkzhk"];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"CELLID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.imageView.image = [UIImage imageNamed:@"icon"];
+    [cell.imageView gd_setCodeImageWithCodeImageSize:300 centerImage:[UIImage imageNamed:@"icon"] codeMessage:@"2121212243a43a434fa3f4a3s4df3"];
+    
+    //    [UIImage gd_asyncGetQrCodeImageWithSize:1000*10 color:[[UIColor redColor] colorWithAlphaComponent:0.6]message:@"2121212243a43a434fa3f4a3s4df35as4df54asdf54a6s4f5asd45f64as65df4as654fa56s4df534ad54f65fd4a564fd34saf5d64as56f4as65d4f65sa4d65ffffffs4d56s4564dfs65d4f56s4d65f4s56d4f56sd4f564sd56f4s654d65fs4d5f64sd564f56sd4f564ds65f4sd654h" completion:^(UIImage *qrCodeImage) {
+    //        cell.imageView.image  = qrCodeImage;
+    //    }];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+
+
+
+
 
 @end

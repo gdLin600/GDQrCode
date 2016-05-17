@@ -167,4 +167,49 @@
 
 
 
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
++ (void)gd_asyncGetQrCodeImageWithMessage:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithMessage:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
++ (void)gd_asyncGetQrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage completion:(void (^)(UIImage * qrCodeImage))completion;
+
+
 @end
