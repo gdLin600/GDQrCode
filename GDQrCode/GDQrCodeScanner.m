@@ -26,7 +26,7 @@
 @end
 
 @implementation GDQrCodeScanner
-//singleton_implementationstatic;
+singleton_implementationstatic;
 
 #pragma mark -------- 懒加载---------
 - (AVCaptureDevice *)device

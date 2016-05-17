@@ -12,112 +12,131 @@
 #import "UIColor+GDQrCode.h"
 
 @implementation UIImage (GDQrCodeImage)
-#pragma mark - 创建一个有大小颜色的二维码图片
-+ (instancetype)gd_QrCodeImageWithMessage:(NSString *)inputMessage{
-    return [[super alloc] initWithMessage:inputMessage];
+
+- (UIImage *)roundedCornerImageWithCornerRadius:(CGFloat)cornerRadius {
+    CGFloat w = self.size.width;
+    CGFloat h = self.size.height;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    if (cornerRadius < 0)
+        cornerRadius = 0;
+    else if (cornerRadius > MIN(w, h))
+        cornerRadius = MIN(w, h) / 2.;
+    UIImage *image = nil;
+    CGRect imageFrame = CGRectMake(0., 0., w, h);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, scale);
+    [[UIBezierPath bezierPathWithRoundedRect:imageFrame cornerRadius:cornerRadius] addClip];
+    [self drawInRect:imageFrame];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
-- (instancetype)initWithMessage:(NSString *)inputMessage{
-    return [self initWithSize:0 color:nil message:inputMessage];
+
+#pragma mark - 创建一个有大小颜色的二维码图片
++ (instancetype)gd_QrCodeImageWithMessage:(NSString *)codeMessage{
+    return [[super alloc] initWithMessage:codeMessage];
+}
+- (instancetype)initWithMessage:(NSString *)codeMessage{
+    return [self initWithSize:0 color:nil message:codeMessage];
 }
 
 #pragma mark - 创建一个自定义大小的二维码
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)inputMessage{
-    return [[super alloc] initWithSize:size message:inputMessage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage{
+    return [[super alloc] initWithSize:size message:codeMessage];
 }
-- (instancetype)initWithSize:(CGFloat)size message:(NSString *)inputMessage{
+- (instancetype)initWithSize:(CGFloat)size message:(NSString *)codeMessage{
     
-    return [self initWithSize:size color:nil message:inputMessage];
+    return [self initWithSize:size color:nil message:codeMessage];
 }
 
 #pragma mark - 创建一个自定义颜色的二维码
-+ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage{
-    return [[super alloc] initWithColor:codeColor message:inputMessage];
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage{
+    return [[super alloc] initWithColor:codeColor message:codeMessage];
 }
-- (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)inputMessage{
-    return [self initWithSize:0 color:codeColor message:inputMessage];
+- (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)codeMessage{
+    return [self initWithSize:0 color:codeColor message:codeMessage];
 }
 
 #pragma mark - 创建一个有大小颜色的二维码图片
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage{
-    return [[super alloc] initWithSize:size color:codeColor message:inputMessage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage{
+    return [[super alloc] initWithSize:size color:codeColor message:codeMessage];
 }
 
-- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage{
-    return [self initWithSize:size color:codeColor message:inputMessage centerImage:nil];
+- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage{
+    return [self initWithSize:size color:codeColor message:codeMessage centerImage:nil];
 }
 
 
 
 #pragma mark - 创建一个二维码图片(含有logo)
 
-- (instancetype)initWithMessage:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:0 message:inputMessage centerImage:centerImage];
+- (instancetype)initWithMessage:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:0 message:codeMessage centerImage:centerImage];
 }
-+ (instancetype)gd_QrCodeImageWithMessage:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithMessage:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithMessage:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithMessage:codeMessage centerImage:centerImage];
 }
 
 #pragma mark - 创建一个自定义大小的二维码(含有logo)
-- (instancetype)initWithSize:(CGFloat)size message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:size color:nil message:inputMessage centerImage:centerImage];
+- (instancetype)initWithSize:(CGFloat)size message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:size color:nil message:codeMessage centerImage:centerImage];
 }
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithSize:size message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithSize:size message:codeMessage centerImage:centerImage];
 }
 
 
 #pragma mark - 创建一个自定义颜色的二维码(含有logo)
 
-- (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:0 color:codeColor message:inputMessage centerImage:centerImage];
+- (instancetype)initWithColor:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:0 color:codeColor message:codeMessage centerImage:centerImage];
 }
-+ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithColor:codeColor message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithColor:codeColor message:codeMessage centerImage:centerImage];
 }
 
 #pragma mark -  创建一个有大小颜色的二维码图片(含有logo)
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithSize:size color:codeColor message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithSize:size color:codeColor message:codeMessage centerImage:centerImage];
 }
-- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:size color:codeColor bgColor:[UIColor whiteColor] message:inputMessage centerImage:centerImage];
+- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:size color:codeColor bgColor:[UIColor whiteColor] message:codeMessage centerImage:centerImage];
 }
 
 
 
 #pragma mark - 创建一个有颜色 背景色 (含有logo)默认大小
-- (instancetype)initWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:0 color:codeColor bgColor:bgColor message:inputMessage centerImage:centerImage];
+- (instancetype)initWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:0 color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
 }
-+ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithColor:codeColor bgColor:bgColor message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithColor:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithColor:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
 }
 
 
 #pragma mark - 创建一个有大小  背景色 (含有logo)默认颜色
 
-- (instancetype)initWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [self initWithSize:size color:nil bgColor:bgColor message:inputMessage centerImage:centerImage];
+- (instancetype)initWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [self initWithSize:size color:nil bgColor:bgColor message:codeMessage centerImage:centerImage];
 }
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithSize:size bgColor:bgColor message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithSize:size bgColor:bgColor message:codeMessage centerImage:centerImage];
 }
 
 
 #pragma mark - 创建一个有大小 颜色 背景色 (不含有logo)
-- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage{
-    return [self initWithSize:size color:codeColor bgColor:bgColor message:inputMessage centerImage:nil];
+- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage{
+    return [self initWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:nil];
 }
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage{
-    return [[super alloc] initWithSize:size color:codeColor bgColor:bgColor message:inputMessage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage{
+    return [[super alloc] initWithSize:size color:codeColor bgColor:bgColor message:codeMessage];
 }
 
 #pragma mark - 创建一个有大小 颜色 背景色 (含有logo)
-+ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
-    return [[super alloc] initWithSize:size color:codeColor bgColor:bgColor message:inputMessage centerImage:centerImage];
++ (instancetype)gd_QrCodeImageWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
+    return [[super alloc] initWithSize:size color:codeColor bgColor:bgColor message:codeMessage centerImage:centerImage];
 }
 
-- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)inputMessage centerImage:(UIImage *)centerImage{
+- (instancetype)initWithSize:(CGFloat)size color:(UIColor *)codeColor bgColor:(UIColor *)bgColor message:(NSString *)codeMessage centerImage:(UIImage *)centerImage{
     if (self = [super init]) {
         // 1.创建滤镜
         CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
@@ -126,8 +145,8 @@
         
         // 3.设置需要生成二维码的数据到滤镜中
         // OC中要求设置的是一个二进制数据
-        NSData *data = [inputMessage dataUsingEncoding:NSUTF8StringEncoding];
-        [filter setValue:data forKeyPath:@"InputMessage"];
+        NSData *data = [codeMessage dataUsingEncoding:NSUTF8StringEncoding];
+        [filter setValue:data forKeyPath:@"inputMessage"];
         
         // 4.从滤镜从取出生成好的二维码图片
         CIImage *ciImage = [filter outputImage];
@@ -190,6 +209,7 @@
     CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
     CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
     CGContextDrawImage(context, CGRectMake( (w-subWidth)/2, (h - subHeight)/2, subWidth, subHeight), [subImage CGImage]);
+    
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);
     UIImage *image=[UIImage imageWithCGImage:imageMasked];
     CGImageRelease(imageMasked);
@@ -251,6 +271,7 @@
     CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight, 8, 32, bytesPerRow, colorSpace,
                                         kCGImageAlphaLast | kCGBitmapByteOrder32Little, dataProvider,
                                         NULL, true, kCGRenderingIntentDefault);
+    
     CGDataProviderRelease(dataProvider);
     UIImage* resultUIImage = [UIImage imageWithCGImage:imageRef];
     // 清理空间

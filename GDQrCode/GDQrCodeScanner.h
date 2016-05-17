@@ -32,7 +32,7 @@ return instance_;\
 typedef void (^completionBlock) (NSString *qrCodeMessage,NSError *error);
 
 @interface GDQrCodeScanner : NSObject
-//singleton_interface;
+singleton_interface;
 /**
  *  二维码扫描枪
  *
