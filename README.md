@@ -1,4 +1,4 @@
-# GDQrCode是一个基于 CoreImage 使用UIImage的一个分类来自定义属于自己的二维码
+# GDQrCode是一个基于 CoreImage 使用UIImage及UIimageView的一个分类来自定义属于自己的二维码
 
 ###1.可实现二维码颜色 背景色 自定义
 ###2.可实现二维码 背景色的透明度的设置
@@ -7,6 +7,7 @@
 # 不设置背景色时默认背景色为白色
 ##可以设置颜色的alpha,可使用colorWithAlphaComponent: 及 colorWithRed:green:blue:alpha:来设置alpha
 
+##UIImage的分类实现二维码
 ### 可自定义大小 颜色 (只能设置颜色的alpha想设置背景色的alpha时可以使用设置背景色的时候设置背景色的alpha)
 
 ```objc
@@ -97,3 +98,66 @@
 + (instancetype)gd_codeImageWithSize:color:bgColor:message:;
 
 ```
+
+
+##UIImageView的分类实现二维码
+
+```objc
+/**
+*  imageview 设置二维码图片
+*/
+- (void)gd_setCodeImageWithCodeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageColor: codeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageBdColor: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageSize: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: codeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: codeMessage:;
+
+
+
+- (void)gd_setCodeImageWithCenterImage: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageColor: centerImage: codeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageBdColor: centerImage: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageBdColor: codeImageSize: centerImage: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageSize: centerImage: codeMessage:;
+
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImageSize: centerImage: codeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: centerImage: codeMessage:;
+
+- (void)gd_setCodeImageWithCodeImageColor: codeImagebgColor: codeImageSize: centerImage: codeMessage:;
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
