@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "GDQrCode.h"
+#import "UIImage+GDQRCode.h"
+#import "UIImageView+GDQRCode.h"
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, weak) UIImageView *imageV;
 @property (nonatomic, assign) NSInteger count;
@@ -47,11 +49,11 @@
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.imageV gd_setCodeImageWithCodeImageSize:1024*10  centerImage:nil codeMessage:@"1222212sadahkhdkjahsdkjhakjdhkajshdkjahkjkbcmbzmcbnjhjgjgajhgajgahgfjhgajhgbbzxnbmbzmbcjbjkhjkahdkjahdkjahskjdhakbcmzbmzbcmbajkshdkjahkdjhaskhdkahsdkhuiqhyuiyqiueyxhklh fjkzhx cjhckhzkjhc kxjhzc jhsjk ha hjka hfjka hf askjdhjkahkjxcncznczkhcjkzhk"];
+    //    [self.imageV gd_setCodeImageWithCodeImageSize:100 centerImage:[UIImage imageNamed:@"icon"] codeMessage:@"2121212243a43a434fa3f4a3s4df3 hfjka hf askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk askjdhjkahkjxcncznczkhcjkzhk"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return 200;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -60,11 +62,18 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.imageView.image = [UIImage imageNamed:@"icon"];
-    [cell.imageView gd_setCodeImageWithCodeImageSize:300 centerImage:[UIImage imageNamed:@"icon"] codeMessage:@"2121212243a43a434fa3f4a3s4df3"];
+    //    [UIImage gd_QRCodeImageWithQRCodeImageSize:200 qrCodeImageColor:[UIColor whiteColor]  qrCodeBgImageColor:[UIColor blackColor] centerImage:[UIImage imageNamed:@"icon"] codeMessage:@"" completion:^(UIImage *qrCodeImage) {
+    //        cell.imageView.image =  qrCodeImage;
+    //    }];
+    
+    [cell.imageView gd_setQRCodeImageWithQRCodeImageSize:200 * 10 qrCodeImageColor:[UIColor whiteColor]  qrCodeBgImageColor:[UIColor blackColor] centerImage:[UIImage imageNamed:@"icon"] placeholderImage:[UIImage imageNamed:@"icon"] codeMessage:@""];
+    
+    
+    //    [cell.imageView gd_setCodeImageWithCodeImageSize:300*10 centerImage:[UIImage imageNamed:@"icon"] codeMessage:@"2121212243a43a434fa3f4a3s4df3"];
     
     //    [UIImage gd_asyncGetQrCodeImageWithSize:1000*10 color:[[UIColor redColor] colorWithAlphaComponent:0.6]message:@"2121212243a43a434fa3f4a3s4df35as4df54asdf54a6s4f5asd45f64as65df4as654fa56s4df534ad54f65fd4a564fd34saf5d64as56f4as65d4f65sa4d65ffffffs4d56s4564dfs65d4f56s4d65f4s56d4f56sd4f564sd56f4s654d65fs4d5f64sd564f56sd4f564ds65f4sd654h" completion:^(UIImage *qrCodeImage) {
     //        cell.imageView.image  = qrCodeImage;
+    
     //    }];
     return cell;
 }

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		663559E71CCDF36000564EBD /* GDQrCodeConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 663559E21CCDF36000564EBD /* GDQrCodeConst.m */; };
 		663559E81CCDF36000564EBD /* UIColor+GDQrCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 663559E41CCDF36000564EBD /* UIColor+GDQrCode.m */; };
-		663559E91CCDF36000564EBD /* UIImage+GDQrCodeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 663559E61CCDF36000564EBD /* UIImage+GDQrCodeImage.m */; };
 		668D028F1CCDF26A002B151F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D028E1CCDF26A002B151F /* main.m */; };
 		668D02921CCDF26A002B151F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02911CCDF26A002B151F /* AppDelegate.m */; };
 		668D02951CCDF26A002B151F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02941CCDF26A002B151F /* ViewController.m */; };
@@ -19,7 +17,8 @@
 		668D02A81CCDF26A002B151F /* GDQrCodeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02A71CCDF26A002B151F /* GDQrCodeExampleTests.m */; };
 		668D02B31CCDF26A002B151F /* GDQrCodeExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 668D02B21CCDF26A002B151F /* GDQrCodeExampleUITests.m */; };
 		669BC5881CD9BD830091C5A3 /* GDQrCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */; };
-		669C6EC01CEB074700386C3D /* UIImageView+GDQrCodeImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6EBF1CEB074700386C3D /* UIImageView+GDQrCodeImageView.m */; };
+		66AA169F1CFF39B3003A9834 /* UIImage+GDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AA169E1CFF39B3003A9834 /* UIImage+GDQRCode.m */; };
+		66AA16A21CFF3EED003A9834 /* UIImageView+GDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AA16A11CFF3EED003A9834 /* UIImageView+GDQRCode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +40,8 @@
 
 /* Begin PBXFileReference section */
 		663559E01CCDF36000564EBD /* GDQrCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQrCode.h; sourceTree = "<group>"; };
-		663559E11CCDF36000564EBD /* GDQrCodeConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQrCodeConst.h; sourceTree = "<group>"; };
-		663559E21CCDF36000564EBD /* GDQrCodeConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQrCodeConst.m; sourceTree = "<group>"; };
 		663559E31CCDF36000564EBD /* UIColor+GDQrCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GDQrCode.h"; sourceTree = "<group>"; };
 		663559E41CCDF36000564EBD /* UIColor+GDQrCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GDQrCode.m"; sourceTree = "<group>"; };
-		663559E51CCDF36000564EBD /* UIImage+GDQrCodeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GDQrCodeImage.h"; sourceTree = "<group>"; };
-		663559E61CCDF36000564EBD /* UIImage+GDQrCodeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GDQrCodeImage.m"; sourceTree = "<group>"; };
 		668D028A1CCDF26A002B151F /* GDQrCodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GDQrCodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		668D028E1CCDF26A002B151F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		668D02901CCDF26A002B151F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,8 +60,10 @@
 		668D02B41CCDF26A002B151F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		669BC5861CD9BD830091C5A3 /* GDQrCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDQrCodeScanner.h; sourceTree = "<group>"; };
 		669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDQrCodeScanner.m; sourceTree = "<group>"; };
-		669C6EBE1CEB074700386C3D /* UIImageView+GDQrCodeImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GDQrCodeImageView.h"; sourceTree = "<group>"; };
-		669C6EBF1CEB074700386C3D /* UIImageView+GDQrCodeImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GDQrCodeImageView.m"; sourceTree = "<group>"; };
+		66AA169D1CFF39B3003A9834 /* UIImage+GDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GDQRCode.h"; sourceTree = "<group>"; };
+		66AA169E1CFF39B3003A9834 /* UIImage+GDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GDQRCode.m"; sourceTree = "<group>"; };
+		66AA16A01CFF3EED003A9834 /* UIImageView+GDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GDQRCode.h"; sourceTree = "<group>"; };
+		66AA16A11CFF3EED003A9834 /* UIImageView+GDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GDQRCode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,16 +95,14 @@
 			isa = PBXGroup;
 			children = (
 				663559E01CCDF36000564EBD /* GDQrCode.h */,
-				663559E11CCDF36000564EBD /* GDQrCodeConst.h */,
-				663559E21CCDF36000564EBD /* GDQrCodeConst.m */,
 				663559E31CCDF36000564EBD /* UIColor+GDQrCode.h */,
 				663559E41CCDF36000564EBD /* UIColor+GDQrCode.m */,
-				663559E51CCDF36000564EBD /* UIImage+GDQrCodeImage.h */,
-				663559E61CCDF36000564EBD /* UIImage+GDQrCodeImage.m */,
 				669BC5861CD9BD830091C5A3 /* GDQrCodeScanner.h */,
 				669BC5871CD9BD830091C5A3 /* GDQrCodeScanner.m */,
-				669C6EBE1CEB074700386C3D /* UIImageView+GDQrCodeImageView.h */,
-				669C6EBF1CEB074700386C3D /* UIImageView+GDQrCodeImageView.m */,
+				66AA169D1CFF39B3003A9834 /* UIImage+GDQRCode.h */,
+				66AA169E1CFF39B3003A9834 /* UIImage+GDQRCode.m */,
+				66AA16A01CFF3EED003A9834 /* UIImageView+GDQRCode.h */,
+				66AA16A11CFF3EED003A9834 /* UIImageView+GDQRCode.m */,
 			);
 			path = GDQrCode;
 			sourceTree = SOURCE_ROOT;
@@ -305,12 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669C6EC01CEB074700386C3D /* UIImageView+GDQrCodeImageView.m in Sources */,
 				668D02951CCDF26A002B151F /* ViewController.m in Sources */,
+				66AA16A21CFF3EED003A9834 /* UIImageView+GDQRCode.m in Sources */,
 				663559E81CCDF36000564EBD /* UIColor+GDQrCode.m in Sources */,
+				66AA169F1CFF39B3003A9834 /* UIImage+GDQRCode.m in Sources */,
 				668D02921CCDF26A002B151F /* AppDelegate.m in Sources */,
-				663559E71CCDF36000564EBD /* GDQrCodeConst.m in Sources */,
-				663559E91CCDF36000564EBD /* UIImage+GDQrCodeImage.m in Sources */,
 				668D028F1CCDF26A002B151F /* main.m in Sources */,
 				669BC5881CD9BD830091C5A3 /* GDQrCodeScanner.m in Sources */,
 			);

@@ -23,32 +23,6 @@
     }
     GDColorRGBA rgba = {r * 255.0,g * 255.0,b * 255.0,a * 255.0};
     return rgba;
-    /*CGFloat components[3];
-     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-     unsigned char resultingPixel[4];
-     CGContextRef context = CGBitmapContextCreate(&resultingPixel,
-     1,
-     1,
-     8,
-     4,
-     rgbColorSpace,
-     kCGImageAlphaNoneSkipLast);
-     CGContextSetFillColorWithColor(context, [self CGColor]);
-     CGContextFillRect(context, CGRectMake(0, 0, 1, 1));
-     CGContextRelease(context);
-     CGColorSpaceRelease(rgbColorSpace);
-     for (int component = 0; component < 3; component++) {
-     components[component] = resultingPixel[component];
-     }
-     
-     GDColorRGBA rgba = {
-     components[0],
-     components[1],
-     components[2],
-     //        components[3],
-     [[self valueForKey:@"alphaComponent"] floatValue] * 255.0
-     };
-     return rgba;*/
 }
 
 

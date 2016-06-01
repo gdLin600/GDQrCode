@@ -8,8 +8,8 @@
 
 #ifndef GDQrCode_h
 #define GDQrCode_h
-#import "UIImage+GDQrCodeImage.h"
-#import "UIImageView+GDQrCodeImageView.h"
-#import "GDQrCodeScanner.h"
+#import "UIImage+GDQRCode.h"
+#import "UIImageView+GDQRCode.h"
+
 
 #endif /* GDQrCode_h */
